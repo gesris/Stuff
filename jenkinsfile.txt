@@ -8,11 +8,8 @@ pipeline {
                     echo "Multiline shell steps works too"
                     ls -lah
                 '''
-            }
-        }
-	stage('Build2'){
-		steps {
-			sh 'lfkdflk'
+		sh 'echo "AND (&&) operation works too'
+		sh 'ls && ls -lah'
 		}
 	}
     }
