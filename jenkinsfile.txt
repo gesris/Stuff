@@ -10,5 +10,8 @@ pipeline {
                 '''
             }
         }
+	stage('Build2'){
+		sh 'lfkdflk'
+	}
     }
 }
