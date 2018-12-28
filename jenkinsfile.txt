@@ -11,7 +11,9 @@ pipeline {
             }
         }
 	stage('Build2'){
-		sh 'lfkdflk'
+		steps {
+			sh 'lfkdflk'
+		}
 	}
     }
 }
