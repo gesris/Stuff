@@ -8,8 +8,6 @@ pipeline {
                     echo "Multiline shell steps works too"
                     ls -lah
                 '''
-		sh 'echo "AND (&&) operation works too'
-		sh 'ls -lah'
 		}
 	}
     }
