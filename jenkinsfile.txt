@@ -12,8 +12,8 @@ pipeline {
 	}
 	stage('Fail-Stage') {
             steps {
-		sh 'echo "this should not work"'
-                sh 'this should not work'
+		sh 'echo "this should now work"'
+                sh 'ls'
 		}
 	}
     }
