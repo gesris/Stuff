@@ -6,7 +6,6 @@ pipeline {
                 sh 'python --version'
 		sh 'ls -a'
 		sh 'python3 python_test.py'
-		sh '13'
 
             }
         }
