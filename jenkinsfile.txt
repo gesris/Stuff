@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage('build') {
             steps {
-                sh 'python --version'
+                sh 'python3 --version'
 		        sh 'ls -a'
 		        sh 'python3 python_test.py'
 
