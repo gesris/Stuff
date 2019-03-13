@@ -1,11 +1,11 @@
 pipeline {
-    agent { docker { image 'python:3.5.1' } }
+    agent { label 'master' }
     stages {
         stage('build') {
             steps {
                 sh 'python --version'
-		sh 'ls -a'
-		sh 'python3 python_test.py'
+		        sh 'ls -a'
+		        sh 'python3 python_test.py'
 
             }
         }
