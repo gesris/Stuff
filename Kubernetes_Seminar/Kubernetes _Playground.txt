@@ -1,0 +1,111 @@
+Helpful commands
+Some helpful quick wins!
+
+Start an instant Application
+Start using Kubernets with kubectl.
+
+Launch containers with 
+
+-> kubectl run my-nginx --image=nginx.
+
+Expose the deployment inside of the cluster 
+
+-> kubectl expose deployment my-nginx --port 80.
+
+Now you have one type deployment (created by kubectl run ...) and one type service created. This maps 
+in Kubernetes to the following components:
+
+-> kubectl get all
+
+Access a service by localhost
+Proxy the traffic into your local host by using the port-forward command:  
+
+-> kubectl port-forward svc/my-nginx 80:80 
+
+& Connect to the Nginx web server locally trough 
+
+-> curl localhost:80
+
+Stop the proxying background process: -> kill %1
+
+Clean up the namespace
+The implementation of kubectl run and kubectl expose creates automatically a label run=<name> to the 
+deployment and the service. Execute the following command to see it: 
+
+-> kubectl get svc,pods --show-labels
+
+Now use 
+
+-> kubectl delete all -l run=my-nginx 
+
+to stop and remove the running container and the service.
+
+Enable kubectl on second node
+Copy the content of the file ~/.kube/config into your clipboard through the terminal output of 
+
+-> cat ~/.kube/config
+
+Now use your mouse, mark the content, and copy it with right click>copy in the browser terminal.
+
+Create now in the SECOND terminal a new folder and the kubeconfig file: 
+
+-> mkdir ~/.kube && vim ~/.kube/config
+
+Change vim to input mode by -> i and paste the content with right click>paste as plain text in 
+the browser terminal. Exit input mode with pressing the ESC key and type -> :x!
+
+Check if kubectl is working: 
+
+-> kubectl get nodes -o wide
+
+enable bash completion 
+
+-> echo 'source <(kubectl completion bash)' >> .bashrc && source .bashrc
+
+CONTINUE
+
+
+
+
+Access Web Content
+Expose a Service to the public
+(on Katacoda)
+
+Watch was is happening in your namespace:
+
+-> watch kubectl get all
+
+Launch a webserver with 
+
+-> kubectl run web --image=loodse/demo-www
+
+Define the external IP of the Katacoda node where the pod is running, here node01:
+
+-> kubectl get pods -o wide
+
+Find the ensX interface: 
+
+-> ifconfig | grep ens
+
+-> export NODEIP=$(/sbin/ifconfig ens4 | grep 'inet addr:' | cut -d: -f2 | awk '{ print $1}')
+
+The the node IP is: -> echo $NODEIP
+
+Create a kubernetes service with a binding to his "external" ip:
+
+-> kubectl expose deployment web --port 80 --external-ip=$NODEIP
+
+This should be something like this output:
+
+kubectl get svc
+NAME         TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)   AGE
+kubernetes   ClusterIP   10.96.0.1       <none>        443/TCP   40m
+web          ClusterIP   10.103.120.52   172.17.0.63   80/TCP    6s
+Now open trough the + at the Katacoda UI the menu View HTTP Port 80 on Host2
+
+Cleanup all resources in default namespace
+-> kubectl delete all --all -n default
+
+CONTINUE
+
+

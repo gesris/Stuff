@@ -1,0 +1,70 @@
+installation guide following https://www.edureka.co/blog/install-kubernetes-on-ubuntu
+
+// on all machines!
+
+
+// update the repositories
+$ sudo su
+# apt update
+
+
+// turn off swap space
+# swapoff -a
+# nano /etc/fstab
+
+// update hostname
+# nano /etc/hostname
+
+// note the ip-address
+# ifconfig
+
+// Now go to the ‘hosts’ file on both the master and node and add an entry specifying their respective IP addresses along with their names ‘kmaster’ and ‘knode’. This is used for referencing them in the cluster.
+# nano /etc/hosts
+// e. g. 	
+192.168.52.203  Server-PC
+192.168.52.204  Master-PC
+192.168.52.205  Agent-RASPBERRYPI
+
+
+
+// setting static ip-address
+# nano /etc/network/interfaces
+//Now enter the following lines in the file.
+
+auto enp0s8
+iface enp0s8 inet static
+address <IP-Address-Of-VM>
+
+// install openssh-server
+# sudo apt install openssh-server  
+
+// install docker 
+# apt update
+#apt install -y docker.io
+
+// Next we have to install these 3 essential components for setting up Kubernetes environment: kubeadm, kubectl, and kubelet.
+# apt update && apt-get install -y apt-transport-https curl
+# curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add -
+# cat <<EOF >/etc/apt/sources.list.d/kubernetes.list
+deb http://apt.kubernetes.io/ kubernetes-xenial main
+EOF
+# apt update
+# apt-get install -y kubelet kubeadm kubectl 
+
+
+// Next, we will change the configuration file of Kubernetes. Run the following command:
+# nano /etc/systemd/system/kubelet.service.d/10-kubeadm.conf
+// This will open a text editor, enter the following line after the last “Environment Variable”:
+
+Environment=”cgroup-driver=systemd/cgroup-driver=cgroupfs”
+
+
+
+// only on master
+
+
+//We will now start our Kubernetes cluster from the master’s machine. Run the following command:
+
+# kubeadm init --apiserver-advertise-address=<ip-address-of-kmaster-vm> --pod-network-cidr=192.168.0.0/16
+
+

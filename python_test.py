@@ -13,4 +13,3 @@ c = b**2
 
 print('c = ',c)
 
-#was geht abalthaaaddllll
