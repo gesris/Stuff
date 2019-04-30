@@ -1,12 +1,52 @@
 pipeline {
-    agent { label 'master' }
+    agent none
     stages {
-        stage('build') {
+        stage('Master-Response') {
+            agent { label 'master'}
+            steps{
+                echo 'Hello from master PC'
+            }
+        }
+	    stage('Master-Test') {
+            agent { label 'master'}
+            steps{
+                python python_test.py
+            }
+        }
+        stage('PC-Response') {
+            agent { label 'agent-pc'}
             steps {
-                sh 'python3 --version'
-		        sh 'ls -a'
-		        sh 'python3 python_test.py'
-
+                echo 'Hello from agent PC (AMD64)'
+            }
+        }
+	    stage('PC-Test') {
+            agent { label 'agent-pc'}
+            steps{
+                python python_test.py
+            }
+        }
+	    stage('Pi-1-Response') {
+            agent { label 'agent-pi-1'}
+            steps {
+                echo 'Hello from agent Pi-1 (ARM)'
+            }
+        }
+	    stage('Pi-1-Test') {
+            agent { label 'agent-pi-1'}
+            steps{
+                python python_test.py
+            }
+        }
+	    stage('Pi-2-Response') {
+            agent { label 'agent-pi-2'}
+            steps {
+                echo 'Hello from agent Pi-2 (ARM)'
+            }
+        }
+	    stage('Pi-2-Test') {
+            agent { label 'agent-pi-2'}
+            steps{
+                python python_test.py
             }
         }
     }
