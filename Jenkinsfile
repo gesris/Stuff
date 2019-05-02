@@ -71,8 +71,6 @@ pipeline {
                 sh 'git checkout master'
                 sh 'git merge testing master'
                 sh 'git push origin master'
-                sh 'gesris'
-                sh 'Ozyris13'
                 echo 'Deployment complete'
             }
         }
