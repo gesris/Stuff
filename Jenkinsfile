@@ -70,7 +70,6 @@ pipeline {
             steps{
                 sh 'git checkout master'
                 sh 'git merge master testing'
-                #sh 'git push origin master'
                 echo 'Deployment complete'
             }
         }
