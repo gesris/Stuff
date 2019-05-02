@@ -20,6 +20,7 @@ pipeline {
         stage('Tests'){
             steps{
                 node ('master'){
+                    sh 'cd ~/Stuff'
                     sh 'git pull https://github.com/gesris/Stuff.git'
                     sh 'python3 python_test.py'
                 }
