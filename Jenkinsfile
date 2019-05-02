@@ -18,7 +18,7 @@ pipeline {
             }
         }
         stage('Tests'){
-            agent{ label 'master && agent-PC'}
+            agent{ label 'master' && 'agent-PC'}
             steps{
                 sh 'python3 python_test.py'
                 }
