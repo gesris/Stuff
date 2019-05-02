@@ -69,8 +69,8 @@ pipeline {
             agent any
             steps{
                 sh 'git checkout master'
-                sh 'git merge testing master'
-                sh 'git push origin master'
+                sh 'git merge master testing'
+                #sh 'git push origin master'
                 echo 'Deployment complete'
             }
         }
