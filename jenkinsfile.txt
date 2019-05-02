@@ -10,7 +10,7 @@ pipeline {
 	    stage('Master-Test') {
             agent { label 'master'}
             steps{
-                python python_test.py
+                sh 'python3 python_test.py'
             }
         }
         stage('PC-Response') {
@@ -22,7 +22,7 @@ pipeline {
 	    stage('PC-Test') {
             agent { label 'agent-pc'}
             steps{
-                python python_test.py
+                sh 'python3 python_test.py'
             }
         }
 	    stage('Pi-1-Response') {
@@ -34,7 +34,7 @@ pipeline {
 	    stage('Pi-1-Test') {
             agent { label 'agent-pi-1'}
             steps{
-                python python_test.py
+                sh 'python3 python_test.py'
             }
         }
 	    stage('Pi-2-Response') {
@@ -46,7 +46,7 @@ pipeline {
 	    stage('Pi-2-Test') {
             agent { label 'agent-pi-2'}
             steps{
-                python python_test.py
+                sh 'python3 python_test.py'
             }
         }
     }
