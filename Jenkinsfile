@@ -18,22 +18,11 @@ pipeline {
             }
         }
         stage('Tests'){
+            agent{ label 'master && agent-PC'}
             steps{
-                node ('master'){
-                    sh 'cd ~/Stuff'
-                    sh 'git pull https://github.com/gesris/Stuff.git'
-                    sh 'python3 python_test.py'
-                }
-                node ('agent-pc'){
-                    sh 'python3 python_test.py'
-                }
-                node ('agent-pi-1'){
-                    sh 'python3 python_test.py'
-                }
-                node ('agent-pi-2'){
-                    sh 'python3 python_test.py'
+                sh 'python3 python_test.py'
                 }
             }
         }
     }
-}
+
