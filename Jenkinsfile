@@ -68,9 +68,7 @@ pipeline {
         stage('Deployment'){
             agent {label 'master'}
             steps{
-                sh 'cd /home/risto/Stuff'
-		sh 'git checkout master'
-		sh 'git merge master testing'
+                sh 'git push origin master'
                 echo 'Deployment complete'
             }
         }
