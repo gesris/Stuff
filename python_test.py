@@ -4,7 +4,7 @@ a = 16
 sqr_a = ma.sqrt(a)
 
 if sqr_a == 4:
-    print('Success???')
+    print('Success?!?!')
     exit(0)
 else:
     print('Failure!')
