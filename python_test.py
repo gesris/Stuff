@@ -1,15 +1,13 @@
 import math as ma
 
-print('Hello world')
 a = 16
+sqr_a = ma.sqrt(a)
 
-print('a = ',a)
+if sqr_a == 4:
+    exit(0)
+else:
+    exit(1)
 
-b = ma.sqrt(a)
 
-print('b = ',b)
 
-c = b**2
-
-print('c = ',c)
 
