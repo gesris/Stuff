@@ -20,7 +20,6 @@ pipeline {
         stage('Tests'){
             steps{
                 node ('master'){
-                    sh 'git pull https://github.com/gesris/Stuff.git'
                     sh 'python3 python_test.py'
                 }
                 node ('agent-pc'){
