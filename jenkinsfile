@@ -1,0 +1,20 @@
+pipeline {
+    agent none
+    stage('Responses') {
+        steps{
+            node ('master'){
+                echo 'Hello from master PC'
+            }
+            node ('agent-pc'){
+                echo 'Hello from agent PC'
+            }
+            node ('agent-pi-1'){
+                echo 'Hello from Pi-1'
+            }
+            node ('agent-pi-2'){
+                echo 'Hello from Pi-2'
+            }
+        }
+    }
+
+}
