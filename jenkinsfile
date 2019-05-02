@@ -17,5 +17,21 @@ pipeline {
                 }
             }
         }
+        stage('Tests'){
+            steps{
+                node ('master'){
+                    sh 'python3 python_test.py'
+                }
+                node ('agent-pc'){
+                    sh 'python3 python_test.py'
+                }
+                node ('agent-pi-1'){
+                    sh 'python3 python_test.py'
+                }
+                node ('agent-pi-2'){
+                    sh 'python3 python_test.py'
+                }
+            }
+        }
     }
 }
