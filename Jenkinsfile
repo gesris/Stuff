@@ -1,14 +1,6 @@
 pipeline {
     agent none
     stages{
-        stage('Setup'){
-            agent any
-            steps{
-                sh 'git checkout testing'
-                sh 'git branch'
-                echo 'Switched to testing branch'
-            }
-        }
         stage('Responses'){
             parallel {
                 stage('Response from Master-PC') {
@@ -63,13 +55,6 @@ pipeline {
                         sh 'python3 python_test.py'
                     }
                 }
-            }
-        }
-        stage('Deployment'){
-            agent {label 'master'}
-            steps{
-                sh 'git push origin master'
-                echo 'Deployment complete'
             }
         }
     }
